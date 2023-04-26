@@ -1,26 +1,42 @@
 import "@/styles/globals.css";
-import { MantineProvider, Box } from "@mantine/core";
+import {
+  MantineProvider,
+  Box,
+  ColorSchemeProvider,
+  ColorScheme,
+} from "@mantine/core";
 import type { AppProps } from "next/app";
 import { Navbar } from "../../components/Navbar";
 import NextNProgress from "nextjs-progressbar";
-
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 export default function App({ Component, pageProps }: AppProps) {
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "mantine-color-scheme",
+    defaultValue: "light",
+    getInitialValueInEffect: true,
+  });
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   return (
     <>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "dark",
-        }}
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <NextNProgress />
-        <Navbar />
-        <Box>
-          <Component {...pageProps} />
-        </Box>
-      </MantineProvider>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ colorScheme }}
+        >
+          <NextNProgress />
+          <Navbar />
+          <Box>
+            <Component {...pageProps} />
+          </Box>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </>
   );
 }

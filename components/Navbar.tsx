@@ -22,6 +22,7 @@ import {
 } from "@tabler/icons-react";
 import { MantineLogo } from "@mantine/ds";
 import Link from "next/link";
+import Theme from "./Theme";
 
 const navLinks = {
   links: [
@@ -87,7 +88,7 @@ const useStyles = createStyles((theme) => ({
   },
   inner: {
     display: "flex",
-    justifyContent: "start",
+    justifyContent: "space-around",
     alignItems: "center",
     height: rem(55),
 
@@ -220,6 +221,11 @@ export function Navbar() {
         />
         <Group spacing={5} className={classes.links}>
           {items}
+        </Group>
+
+        <Group>
+          {" "}
+          <Theme />{" "}
         </Group>
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
