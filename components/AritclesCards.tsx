@@ -42,7 +42,7 @@ export default function AritclesCards({
       <AspectRatio ratio={1920 / 1080}>
         <Image
           src={validImageUrl || fallback}
-          style={{ borderRadius: "10px" }}
+          style={{ borderRadius: "7px" }}
           alt="news article image"
           width={500}
           height={200}

@@ -36,7 +36,7 @@ const navLinks = {
       label: "Search",
     },
     {
-      link: "/category",
+      link: "/categories/business",
       label: "Categories",
       links: [
         {
