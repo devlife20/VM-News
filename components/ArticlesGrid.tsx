@@ -12,7 +12,7 @@ export default function ArticlesGrid({
         { maxWidth: "sm", cols: 1 },
         { maxWidth: "md", cols: 2 },
       ]}
-      px="xl"
+      px={{ base: "xs", sm: "sm", lg: "lg", xl: "xl" }}
     >
       {NewResultsArray.map((article) => (
         <Link
